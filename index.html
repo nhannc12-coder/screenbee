@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ScreenBee — Screen Recorder with Webcam for Chrome</title>
+<meta name="description" content="Record your whole screen or a single browser tab with a webcam bubble, microphone and system audio. Runs 100% locally — no account, nothing uploaded.">
+<style>
+  :root{
+    --bg:#0B0B14; --card:#161625; --line:rgba(255,255,255,.08);
+    --honey:#FFB300; --honey2:#FFD600; --text:#fff; --sub:#9E9EBA; --body:#D1D1E0;
+    --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  a{color:var(--honey)}
+
+  header{padding:22px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(11,11,20,.92);backdrop-filter:blur(10px);z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:800;font-size:19px}
+  .nav-links{display:flex;gap:22px;font-size:14px}
+  .nav-links a{color:var(--sub);text-decoration:none}
+  .nav-links a:hover{color:#fff}
+
+  .hero{padding:72px 0 56px;text-align:center}
+  .hero h1{font-size:44px;line-height:1.15;font-weight:800;letter-spacing:-.5px;margin-bottom:18px}
+  .hero h1 span{background:linear-gradient(135deg,var(--honey2),#FF9100);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{font-size:18px;color:var(--body);max-width:640px;margin:0 auto 30px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#FFB300,#FF7A00);color:#12121e;
+       font-weight:800;font-size:16px;padding:14px 30px;border-radius:999px;text-decoration:none}
+  .cta:hover{filter:brightness(1.07)}
+  .cta-note{display:block;margin-top:14px;font-size:13px;color:var(--sub)}
+
+  .badges{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+  .badge{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 15px;font-size:13px;color:var(--body)}
+
+  section{padding:56px 0;border-top:1px solid var(--line)}
+  h2{font-size:27px;font-weight:800;margin-bottom:10px}
+  .lead{color:var(--sub);margin-bottom:30px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card h3{font-size:16px;margin-bottom:8px}
+  .card p{color:var(--body);font-size:14.5px}
+  .ico{font-size:24px;display:block;margin-bottom:10px}
+
+  .shot{background:var(--card);border:1px dashed var(--line);border-radius:16px;padding:40px 20px;text-align:center;color:var(--sub);font-size:14px}
+
+  .prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:start}
+  .tier{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+  .tier.best{border-color:rgba(255,179,0,.55);box-shadow:0 0 0 1px rgba(255,179,0,.18)}
+  .tier .tag{font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--sub);font-weight:700}
+  .price{font-size:38px;font-weight:800;margin:10px 0 2px}
+  .price small{font-size:15px;color:var(--sub);font-weight:600}
+  .tier ul{list-style:none;margin:16px 0 0}
+  .tier li{padding:6px 0;color:var(--body);font-size:14.5px}
+  .yes{color:#69F0AE;margin-right:6px}
+  .no{color:#FF8A80;margin-right:6px}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
+  summary{cursor:pointer;font-weight:700;font-size:15px}
+  details p{color:var(--body);font-size:14.5px;margin-top:10px}
+
+  footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--sub);font-size:14px}
+  .foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .foot a{color:var(--sub);text-decoration:none;margin-right:18px}
+  .foot a:hover{color:#fff}
+
+  @media (max-width:600px){ .hero h1{font-size:32px} .hero{padding:48px 0 40px} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#FFD600"/><stop offset="1" stop-color="#FF9100"/>
+        </linearGradient></defs>
+        <circle cx="50" cy="50" r="45" fill="url(#g)"/>
+        <path d="M35 28 L30 18 L22 13 M65 28 L70 18 L78 13" stroke="#1a1a2e" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <circle cx="22" cy="13" r="4" fill="#1a1a2e"/><circle cx="78" cy="13" r="4" fill="#1a1a2e"/>
+        <ellipse cx="50" cy="50" rx="28" ry="22" fill="#1a1a2e"/>
+        <rect x="24" y="43" width="52" height="6" rx="3" fill="#FFD600"/>
+        <rect x="28" y="55" width="44" height="6" rx="3" fill="#FFD600"/>
+        <circle cx="40" cy="38" r="5" fill="#FFD600"/><circle cx="60" cy="38" r="5" fill="#FFD600"/>
+      </svg>
+      ScreenBee
+    </div>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero" style="border:0">
+    <h1>Record your screen with a <span>webcam bubble</span>.<br>Nothing ever leaves your computer.</h1>
+    <p>ScreenBee is a Chrome extension that records your whole screen, any application window,
+       or a single browser tab — together with your webcam, microphone and system audio.
+       No account, no cloud, no watermark, no time limit.</p>
+
+    <!-- TODO: dán link Chrome Web Store vào đây sau khi tiện ích được duyệt -->
+    <a class="cta" href="#pricing">Get ScreenBee</a>
+    <span class="cta-note">Free forever · Full HD 1080p · Works offline</span>
+
+    <div class="badges">
+      <span class="badge">🖥️ Whole screen or one tab</span>
+      <span class="badge">🫧 Webcam bubble baked into the video</span>
+      <span class="badge">🎙️ Mic + system audio</span>
+      <span class="badge">🔒 100% local</span>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>What it does</h2>
+    <p class="lead">Everything below is in the free version.</p>
+    <div class="grid">
+      <div class="card"><span class="ico">🖥️</span><h3>Full screen or a single tab</h3>
+        <p>Record your entire desktop, one application window, or just a browser tab. Your choice at the moment you hit record.</p></div>
+      <div class="card"><span class="ico">🫧</span><h3>Webcam bubble that follows you</h3>
+        <p>The round webcam overlay is composited straight into the video, so it stays visible even when you minimise Chrome and work in another app.</p></div>
+      <div class="card"><span class="ico">🎙️</span><h3>Microphone and system audio</h3>
+        <p>Both are mixed into one track, and you still hear the sound through your speakers while recording.</p></div>
+      <div class="card"><span class="ico">⏱️</span><h3>No time limit, no watermark</h3>
+        <p>Record a two-minute walkthrough or a two-hour lecture. The free version never stamps your video.</p></div>
+      <div class="card"><span class="ico">🎚️</span><h3>Up to 1080p Full HD</h3>
+        <p>480p, 720p and 1080p, all free. Screen text stays readable.</p></div>
+      <div class="card"><span class="ico">🔒</span><h3>Nothing is uploaded</h3>
+        <p>No servers, no account, no analytics. The file is written straight to your Downloads folder when you press stop.</p></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2>How it works</h2>
+    <p class="lead">Three clicks from idea to file.</p>
+    <div class="grid">
+      <div class="card"><span class="ico">1️⃣</span><h3>Pick a mode</h3>
+        <p>Full Screen, Tab + Camera, Tab Only, or Camera Only. Drag the webcam bubble wherever you want it.</p></div>
+      <div class="card"><span class="ico">2️⃣</span><h3>Hit record</h3>
+        <p>A 3-2-1 countdown gives you a moment to get ready. A floating control bar shows a timer with pause and stop.</p></div>
+      <div class="card"><span class="ico">3️⃣</span><h3>Stop and it's saved</h3>
+        <p>The video lands in your Downloads folder immediately. No render queue, no upload, no waiting.</p></div>
+    </div>
+
+    <div style="margin-top:22px" class="shot">
+      <!-- TODO: thay khối này bằng ảnh chụp thật hoặc video demo -->
+      Screenshots and demo video
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2>Pricing</h2>
+    <p class="lead">The recorder is free. PRO adds MP4 export for people who edit or publish their videos.</p>
+    <div class="prices">
+      <div class="tier">
+        <div class="tag">Free</div>
+        <div class="price">$0 <small>forever</small></div>
+        <ul>
+          <li><span class="yes">✓</span> Full screen, window or tab</li>
+          <li><span class="yes">✓</span> Webcam bubble, mic, system audio</li>
+          <li><span class="yes">✓</span> Up to 1080p Full HD</li>
+          <li><span class="yes">✓</span> Unlimited recording time</li>
+          <li><span class="yes">✓</span> No watermark</li>
+          <li><span class="no">✗</span> MP4 export (WebM only)</li>
+        </ul>
+      </div>
+
+      <div class="tier best">
+        <div class="tag">PRO — Yearly</div>
+        <div class="price">$29 <small>/ year</small></div>
+        <ul>
+          <li><span class="yes">✓</span> Everything in Free</li>
+          <li><span class="yes">✓</span> <strong>MP4 export</strong> — opens in every editor</li>
+          <li><span class="yes">✓</span> New features first</li>
+          <li><span class="yes">✓</span> Priority support</li>
+          <li><span class="yes">✓</span> 7-day free trial</li>
+        </ul>
+      </div>
+
+      <div class="tier">
+        <div class="tag">PRO — Lifetime</div>
+        <div class="price">$39 <small>one-time</small></div>
+        <ul>
+          <li><span class="yes">✓</span> Everything in PRO</li>
+          <li><span class="yes">✓</span> Pay once, keep forever</li>
+          <li><span class="yes">✓</span> All future updates</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:18px;color:var(--sub);font-size:14px">
+      Payments are handled by Lemon Squeezy, which acts as the merchant of record and issues your licence key by email.
+      ScreenBee never sees your name, email or payment details.
+    </p>
+  </section>
+
+  <section id="faq">
+    <h2>Questions</h2>
+
+    <details><summary>Do my recordings get uploaded anywhere?</summary>
+      <p>No. Video and audio are processed in your browser's memory and written directly to your disk.
+         ScreenBee runs no servers of any kind.</p></details>
+
+    <details><summary>Why is the free version this generous?</summary>
+      <p>Because a recorder that stamps a watermark on your work or cuts you off after five minutes isn't
+         worth installing. PRO exists for people who need MP4 files for editing and publishing.</p></details>
+
+    <details><summary>What's wrong with WebM?</summary>
+      <p>Nothing, if you only watch it in a browser. But many video editors, presentation tools and platforms
+         won't accept <code>.webm</code>. MP4 plays everywhere, which is why it's the paid feature.</p></details>
+
+    <details><summary>Does it work offline?</summary>
+      <p>Yes. The free version never makes a network request. Only PRO licence activation talks to the
+         payment provider.</p></details>
+
+    <details><summary>Can it record Chrome's own settings pages?</summary>
+      <p>Not in Tab mode — Chrome forbids extensions from touching its internal pages. Use Full Screen mode
+         for those.</p></details>
+
+    <details><summary>Which browsers are supported?</summary>
+      <p>Chrome and other Chromium browsers: Edge, Brave, Opera, Cốc Cốc. Chrome 116 or newer.</p></details>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a href="privacy.html">Privacy Policy</a>
+      <!-- TODO: thay bằng email hỗ trợ thật -->
+      <a href="mailto:nhannc12@gmail.com">Support</a>
+    </div>
+    <div>© 2026 ScreenBee 🐝</div>
+  </div>
+</footer>
+
+</body>
+</html>
