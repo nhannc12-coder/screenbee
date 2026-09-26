@@ -129,27 +129,29 @@
     <h2>3. Browser permissions and why each is needed</h2>
     <ul>
       <li><strong>tabCapture</strong> — captures video and audio of the browser tab you chose to record.</li>
+      <li><strong>Screen sharing</strong> (Full Screen mode) — uses the browser's own
+        <code>getDisplayMedia</code> picker, which needs no extension permission at all. Chrome controls the picker
+        and your consent; ScreenBee only receives the stream you approved.</li>
       <li><strong>activeTab</strong> + <strong>scripting</strong> — draws the countdown, the floating control bar and the
         webcam bubble on the page being recorded.</li>
       <li><strong>Camera &amp; microphone</strong> (requested by the browser at the moment of use) — captures your webcam
         bubble and narration. Streams are processed in memory and released as soon as recording ends.</li>
       <li><strong>offscreen</strong> — runs MediaRecorder in a hidden document, as Manifest V3 requires.</li>
-      <li><strong>storage</strong> — saves the preferences and license data listed in section 1.</li>
-      <li><strong>downloads</strong> — writes the finished <code>.webm</code> file to your Downloads folder.</li>
+      <li><strong>storage</strong> — saves the preferences and the free-plan usage counter listed in section 1.</li>
+      <li><strong>downloads</strong> — writes the finished <code>.webm</code> (or <code>.mp4</code>) file to your Downloads folder.</li>
       <li><strong>Access to all websites (optional, off by default)</strong> — you may grant this so the control bar
         survives when you navigate to another page mid-recording. ScreenBee never reads or transmits page content, and if
         you decline, recording still works normally.</li>
     </ul>
 
     <h2>4. Data sharing and selling</h2>
-    <p>We do not sell, rent, trade or share user data with third parties. Apart from license validation, no data ever
-      reaches us in the first place.</p>
+    <p>We do not sell, rent, trade or share user data with third parties. No data reaches us in the first place —
+      this version sends nothing anywhere.</p>
 
     <h2>5. Retention and deletion</h2>
     <p>Recording data is discarded from memory once the file is written. The free-plan usage counter
       resets by itself every day. To erase everything else, remove the extension at
-      <code>chrome://extensions</code>, or use "Deactivate on this device" in the PRO panel to delete the stored license.
-      Uninstalling clears local storage; synced values are removed by Chrome from your profile.</p>
+      <code>chrome://extensions</code>. Uninstalling clears everything ScreenBee stored on your device.</p>
 
     <h2>6. Children's privacy</h2>
     <p>ScreenBee is not directed at children under 13. We do not knowingly collect their data — in fact we collect no
