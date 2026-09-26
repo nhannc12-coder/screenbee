@@ -83,13 +83,15 @@
       </div>
       <div>
         <h1>Privacy Policy — ScreenBee 🐝</h1>
-        <p class="updated">Version 1.8.0 · Last updated: September 2026</p>
+        <p class="updated">Version 2.0.4 · Last updated: September 2026</p>
       </div>
     </div>
 
     <div class="highlight-box">
       <strong>In short:</strong> your recordings never leave your computer. ScreenBee runs no servers, no analytics,
-      and collects no personal data whatsoever.
+      and collects no personal data whatsoever. The only thing it keeps track of is how many minutes
+      you have recorded today, so it can apply the free plan's limit — a number and a date, stored on
+      your own machine.
     </div>
 
     <h2>1. What ScreenBee stores, and where</h2>
@@ -97,13 +99,19 @@
       <tr><th>Data</th><th>Where it lives</th><th>Why</th></tr>
       <tr>
         <td>Video &amp; audio you record</td>
-        <td>In browser memory while recording, then written as a <code>.webm</code> or <code>.mp4</code> file to your Downloads folder</td>
+        <td>In browser memory while recording, then written as a <code>.webm</code> file (or <code>.mp4</code> with PRO) to your Downloads folder</td>
         <td>This is the product. Nothing is uploaded anywhere.</td>
       </tr>
       <tr>
-        <td>Preferences (language, recording mode, quality, mic on/off)</td>
+        <td>Preferences (language, recording mode, quality, format, mic on/off)</td>
         <td><code>chrome.storage.local</code> on this device</td>
         <td>So the extension opens the way you left it</td>
+      </tr>
+      <tr>
+        <td>Free-plan usage counter — today's date and the number of minutes recorded today</td>
+        <td><code>chrome.storage.local</code> on this device</td>
+        <td>To apply the free plan's daily limit. It is a single number and a date, nothing about
+            what you recorded. It resets each day and never leaves your computer.</td>
       </tr>
     </table>
     <p>
@@ -138,7 +146,8 @@
       reaches us in the first place.</p>
 
     <h2>5. Retention and deletion</h2>
-    <p>Recording data is discarded from memory once the file is written. To erase everything else, remove the extension at
+    <p>Recording data is discarded from memory once the file is written. The free-plan usage counter
+      resets by itself every day. To erase everything else, remove the extension at
       <code>chrome://extensions</code>, or use "Deactivate on this device" in the PRO panel to delete the stored license.
       Uninstalling clears local storage; synced values are removed by Chrome from your profile.</p>
 

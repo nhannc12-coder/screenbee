@@ -56,6 +56,13 @@
   .tier ul{list-style:none;margin:16px 0 0}
   .tier li{padding:6px 0;color:var(--body);font-size:14.5px}
   .yes{color:#69F0AE;margin-right:6px}
+  .tier-cta{display:block;text-align:center;margin-top:20px;padding:12px 18px;border-radius:12px;
+            font-weight:800;font-size:15px;text-decoration:none}
+  .tier-cta.primary{background:linear-gradient(135deg,#FFB300,#FF7A00);color:#12121e}
+  .tier-cta.ghost{background:transparent;border:1px solid var(--line);color:var(--body)}
+  .tier-cta.ghost:hover{border-color:var(--honey);color:#fff}
+  .tier-cta:hover{filter:brightness(1.07)}
+  .tier-note{margin-top:10px;font-size:12.5px;color:var(--sub);text-align:center}
   .no{color:#FF8A80;margin-right:6px}
 
   details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px}
@@ -95,6 +102,7 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
       <a href="privacy.html">Privacy</a>
+      <a href="https://chromewebstore.google.com/detail/screenbee-%E2%80%94-screen-record/kdekolbglmhiohfidcbiiodaeglhnbep" target="_blank" rel="noopener" style="color:var(--honey);font-weight:700">Add to Chrome</a>
     </nav>
   </div>
 </header>
@@ -107,8 +115,7 @@
        or a single browser tab — together with your webcam, microphone and system audio.
        No account, no cloud, no watermark, no time limit.</p>
 
-    <!-- TODO: dán link Chrome Web Store vào đây sau khi tiện ích được duyệt -->
-    <a class="cta" href="#pricing">Get ScreenBee</a>
+    <a class="cta" href="https://chromewebstore.google.com/detail/screenbee-%E2%80%94-screen-record/kdekolbglmhiohfidcbiiodaeglhnbep" target="_blank" rel="noopener">Add to Chrome — it's free</a>
     <span class="cta-note">Free forever · Full HD 1080p · Works offline</span>
 
     <div class="badges">
@@ -129,8 +136,9 @@
         <p>The round webcam overlay is composited straight into the video, so it stays visible even when you minimise Chrome and work in another app.</p></div>
       <div class="card"><span class="ico">🎙️</span><h3>Microphone and system audio</h3>
         <p>Both are mixed into one track, and you still hear the sound through your speakers while recording.</p></div>
-      <div class="card"><span class="ico">⏱️</span><h3>No time limit, no watermark</h3>
-        <p>Record a two-minute walkthrough or a two-hour lecture. The free version never stamps your video.</p></div>
+      <div class="card"><span class="ico">⏱️</span><h3>No watermark, ever</h3>
+        <p>The free version never stamps your video. Free recordings are capped at 5 minutes each and
+           60 minutes a day; PRO removes both limits.</p></div>
       <div class="card"><span class="ico">🎚️</span><h3>Up to 1080p Full HD</h3>
         <p>480p, 720p and 1080p, all free. Screen text stays readable.</p></div>
       <div class="card"><span class="ico">🔒</span><h3>Nothing is uploaded</h3>
@@ -167,10 +175,12 @@
           <li><span class="yes">✓</span> Full screen, window or tab</li>
           <li><span class="yes">✓</span> Webcam bubble, mic, system audio</li>
           <li><span class="yes">✓</span> Up to 1080p Full HD</li>
-          <li><span class="yes">✓</span> Unlimited recording time</li>
           <li><span class="yes">✓</span> No watermark</li>
+          <li><span class="no">✗</span> 5 min per recording · 60 min a day</li>
           <li><span class="no">✗</span> MP4 export (WebM only)</li>
         </ul>
+        <a class="tier-cta ghost" href="https://chromewebstore.google.com/detail/screenbee-%E2%80%94-screen-record/kdekolbglmhiohfidcbiiodaeglhnbep" target="_blank" rel="noopener">Install free</a>
+        <p class="tier-note">No sign-up required</p>
       </div>
 
       <div class="tier best">
@@ -178,11 +188,14 @@
         <div class="price">$29 <small>/ year</small></div>
         <ul>
           <li><span class="yes">✓</span> Everything in Free</li>
+          <li><span class="yes">✓</span> <strong>Unlimited recording length</strong></li>
           <li><span class="yes">✓</span> <strong>MP4 export</strong> — opens in every editor</li>
           <li><span class="yes">✓</span> New features first</li>
           <li><span class="yes">✓</span> Priority support</li>
           <li><span class="yes">✓</span> 7-day free trial</li>
         </ul>
+        <a class="tier-cta primary" href="https://screenbee.lemonsqueezy.com/checkout/buy/1301d4db-d4d6-43c3-a17a-ac34238ae1ff" target="_blank" rel="noopener">Start 7-day free trial</a>
+        <p class="tier-note">Then $29/year · Cancel anytime</p>
       </div>
 
       <div class="tier">
@@ -193,6 +206,8 @@
           <li><span class="yes">✓</span> Pay once, keep forever</li>
           <li><span class="yes">✓</span> All future updates</li>
         </ul>
+        <a class="tier-cta ghost" href="https://screenbee.lemonsqueezy.com/checkout/buy/4bfd6f09-1ea0-409d-8657-70d83347bebe" target="_blank" rel="noopener">Buy Lifetime — $39</a>
+        <p class="tier-note">One payment, no renewal</p>
       </div>
     </div>
     <p style="margin-top:18px;color:var(--sub);font-size:14px">
@@ -208,9 +223,12 @@
       <p>No. Video and audio are processed in your browser's memory and written directly to your disk.
          ScreenBee runs no servers of any kind.</p></details>
 
-    <details><summary>Why is the free version this generous?</summary>
-      <p>Because a recorder that stamps a watermark on your work or cuts you off after five minutes isn't
-         worth installing. PRO exists for people who need MP4 files for editing and publishing.</p></details>
+    <details><summary>What are the free plan limits?</summary>
+      <p>Five minutes per recording and sixty minutes a day, which covers most quick walkthroughs and
+         bug reports. No watermark and no account either way. PRO removes both limits and adds MP4 export.</p></details>
+
+    <details><summary>What happens when I hit the limit mid-recording?</summary>
+      <p>ScreenBee stops and saves the file automatically. You never lose what you already recorded.</p></details>
 
     <details><summary>What's wrong with WebM?</summary>
       <p>Nothing, if you only watch it in a browser. But many video editors, presentation tools and platforms
@@ -223,6 +241,11 @@
     <details><summary>Can it record Chrome's own settings pages?</summary>
       <p>Not in Tab mode — Chrome forbids extensions from touching its internal pages. Use Full Screen mode
          for those.</p></details>
+
+    <details><summary>How do I get PRO after paying?</summary>
+      <p>Lemon Squeezy emails you a licence key right after checkout. Open ScreenBee, click the PRO
+         badge, go to the Activate tab and paste the key. MP4 export unlocks immediately, and the key
+         works on up to 3 devices.</p></details>
 
     <details><summary>Which browsers are supported?</summary>
       <p>Chrome and other Chromium browsers: Edge, Brave, Opera, Cốc Cốc. Chrome 116 or newer.</p></details>
