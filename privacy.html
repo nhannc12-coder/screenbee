@@ -83,15 +83,15 @@
       </div>
       <div>
         <h1>Privacy Policy — ScreenBee 🐝</h1>
-        <p class="updated">Version 2.0.4 · Last updated: September 2026</p>
+        <p class="updated">Version 2.1.0 · Last updated: September 2026</p>
       </div>
     </div>
 
     <div class="highlight-box">
       <strong>In short:</strong> your recordings never leave your computer. ScreenBee runs no servers, no analytics,
-      and collects no personal data whatsoever. The only thing it keeps track of is how many minutes
-      you have recorded today, so it can apply the free plan's limit — a number and a date, stored on
-      your own machine.
+      and collects no personal data whatsoever — no name, no email, no account. It keeps track of how many
+      minutes you have recorded today so it can apply the free plan's limit, and if you buy PRO it stores your
+      licence key. Both live on your own machine.
     </div>
 
     <h2>1. What ScreenBee stores, and where</h2>
@@ -108,6 +108,12 @@
         <td>So the extension opens the way you left it</td>
       </tr>
       <tr>
+        <td>PRO licence key and a random device ID (only if you buy PRO)</td>
+        <td><code>chrome.storage.local</code> and <code>chrome.storage.sync</code></td>
+        <td>To keep your purchase active on this device and to re-check the key. ScreenBee does not store
+            your name, email or payment details — Lemon Squeezy handles checkout and we never receive them.</td>
+      </tr>
+      <tr>
         <td>Free-plan usage counter — today's date and the number of minutes recorded today</td>
         <td><code>chrome.storage.local</code> on this device</td>
         <td>To apply the free plan's daily limit. It is a single number and a date, nothing about
@@ -120,11 +126,16 @@
     </p>
 
     <h2>2. Network connections</h2>
-    <p><strong>This version of ScreenBee makes no outbound network requests at all.</strong> It is a free edition with
-      no paid tier, no licence activation and no account.</p>
-    <p>There is no analytics, telemetry, crash reporting, advertising or tracking script, and no remotely hosted font or
-      code. Your recordings are never transmitted. If a paid tier is introduced in a future version, activating a licence
-      key would contact the payment provider to verify it, and this policy will be updated before that happens.</p>
+    <p>ScreenBee makes exactly one kind of outbound request, and only if you buy PRO:</p>
+    <ul>
+      <li>When you activate a PRO licence key, and when it is re-checked afterwards, the key is sent to
+        Lemon Squeezy (<code>api.lemonsqueezy.com</code>) to confirm it is still valid. Re-checking happens at
+        most once every three days. Nothing else is sent — not your name, not your email, not anything about
+        what you record.</li>
+    </ul>
+    <p><strong>If you never buy PRO, ScreenBee makes no network requests at all.</strong> There is no analytics,
+      telemetry, crash reporting, advertising or tracking script, and no remotely hosted font or code.
+      Your recordings are never transmitted.</p>
 
     <h2>3. Browser permissions and why each is needed</h2>
     <ul>
@@ -137,7 +148,7 @@
       <li><strong>Camera &amp; microphone</strong> (requested by the browser at the moment of use) — captures your webcam
         bubble and narration. Streams are processed in memory and released as soon as recording ends.</li>
       <li><strong>offscreen</strong> — runs MediaRecorder in a hidden document, as Manifest V3 requires.</li>
-      <li><strong>storage</strong> — saves the preferences and the free-plan usage counter listed in section 1.</li>
+      <li><strong>storage</strong> — saves the preferences, the free-plan usage counter and, for PRO users, the licence key listed in section 1.</li>
       <li><strong>downloads</strong> — writes the finished <code>.webm</code> (or <code>.mp4</code>) file to your Downloads folder.</li>
       <li><strong>Access to all websites (optional, off by default)</strong> — you may grant this so the control bar
         survives when you navigate to another page mid-recording. ScreenBee never reads or transmits page content, and if
@@ -145,13 +156,14 @@
     </ul>
 
     <h2>4. Data sharing and selling</h2>
-    <p>We do not sell, rent, trade or share user data with third parties. No data reaches us in the first place —
-      this version sends nothing anywhere.</p>
+    <p>We do not sell, rent, trade or share user data with third parties. Apart from sending a licence key to
+      Lemon Squeezy to verify a PRO purchase, no data leaves your computer at all.</p>
 
     <h2>5. Retention and deletion</h2>
     <p>Recording data is discarded from memory once the file is written. The free-plan usage counter
       resets by itself every day. To erase everything else, remove the extension at
-      <code>chrome://extensions</code>. Uninstalling clears everything ScreenBee stored on your device.</p>
+      <code>chrome://extensions</code>, or use "Deactivate on this device" in the PRO panel to delete the stored
+      licence key. Uninstalling clears everything ScreenBee stored on your device.</p>
 
     <h2>6. Children's privacy</h2>
     <p>ScreenBee is not directed at children under 13. We do not knowingly collect their data — in fact we collect no
